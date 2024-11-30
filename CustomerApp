@@ -1,3 +1,60 @@
+public class Customer {
+    private int id;
+    private double balance;
+    private String firstName;
+    private String lastName;
+
+    // No-argument constructor
+    public Customer() {}
+
+    // Constructor with fields
+    public Customer(int id, String firstName, String lastName, double balance) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.balance = balance;
+    }
+
+    // Getters and setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public double getBalance() { return balance; }
+    public void setBalance(double balance) { this.balance = balance; }
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    // String representation
+    @Override
+    public String toString() {
+        return "Customer[ID=" + id + ", Name=" + firstName + " " + lastName + ", Balance=" + balance + "]";
+    }
+}
+import java.util.Comparator;
+
+public class CustomerComparator implements Comparator<Customer> {
+    @Override
+    public int compare(Customer c1, Customer c2) {
+        // Compare first names
+        int firstNameComparison = c1.getFirstName().compareTo(c2.getFirstName());
+        if (firstNameComparison != 0) return firstNameComparison;
+
+        // Compare last names
+        int lastNameComparison = c1.getLastName().compareTo(c2.getLastName());
+        if (lastNameComparison != 0) return lastNameComparison;
+
+        // Compare IDs if first and last names are equal
+        int idComparison = Integer.compare(c1.getId(), c2.getId());
+        if (idComparison != 0) return idComparison;
+
+        // Compare balance if ID is also equal
+        return Double.compare(c1.getBalance(), c2.getBalance());
+    }
+}
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
