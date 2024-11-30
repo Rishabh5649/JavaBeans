@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class CustomerApp {
+    public static void main(String[] args) {
+        // Creating a list of customers
+        List<Customer> customers = new ArrayList<>();
+
+        // Adding some customers
+        customers.add(new Customer(101, "John", "Doe", 2500.50));
+        customers.add(new Customer(102, "Alice", "Smith", 3200.75));
+        customers.add(new Customer(103, "John", "Smith", 1500.25));
+        customers.add(new Customer(104, "Alice", "Doe", 2000.00));
+        customers.add(new Customer(105, "Bob", "Doe", 3500.00));
+
+        // Sorting the customers based on the custom comparator
+        Collections.sort(customers, new CustomerComparator());
+
+        // Displaying the sorted customers
+        System.out.println("Sorted Customers:");
+        for (Customer customer : customers) {
+            System.out.println(customer);
+        }
+    }
+}
